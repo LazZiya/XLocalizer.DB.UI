@@ -6,15 +6,16 @@
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Interface for managing localization with XLocalizer package and ability to use online translation tools.</Description>
-		<Version>1.0.0-prv4</Version>
+		<Version>1.0.0-prv5</Version>
 		<Authors>Ziya Mollamahmut</Authors>
 		<Company>Ziyad.info</Company>
 		<Copyright>Ziyad.info</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/LazZiya/XLocalizer/wiki</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/LazZiya/XLocalizer.DB.UI</PackageProjectUrl>
 		<ApplicationIcon>files\icon.ico</ApplicationIcon>
 		<PackageIcon>icon.png</PackageIcon>
-		<RepositoryUrl>https://github.com/LazZiya/XLocalizer</RepositoryUrl>
+		<PackageIconUrl>https://github.com/LazZiya/XLocalizer.DB.UI/raw/master/XLocalizer.DB.UI/files/icon.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/LazZiya/XLocalizer.DB.UI</RepositoryUrl>
 		<RepositoryType></RepositoryType>
 		<PackageTags>asp.net, core, razor, mvc, localization, globalization, translation,ui</PackageTags>
 		<PackageReleaseNotes>Manage cultures, resource keys and translations with ability to use online translation</PackageReleaseNotes>
@@ -32,7 +33,7 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(UseReference)' == 'Nugets'">
-		<PackageReference Include="XLocalizer.DB" Version="1.0.0-prv4" Exclude="Build,Analyzers" />
+		<PackageReference Include="XLocalizer.DB" Version="1.0.0-prv5" Exclude="Build,Analyzers" />
 		<PackageReference Include="LazZiya.TagHelpers" Version="5.0.0-beta1" Exclude="Build,Analyzers" />		
 	</ItemGroup>
 

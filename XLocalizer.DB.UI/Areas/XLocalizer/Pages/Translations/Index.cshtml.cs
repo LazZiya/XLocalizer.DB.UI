@@ -19,12 +19,12 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Translations
     {
         private readonly IDbResourceManager _resManager;
         private readonly IDbCultureManager _culManager;
-        private readonly IStringTranslatorFactory _translatorFactory;
+        private readonly ITranslatorFactory _translatorFactory;
         private readonly ILogger _logger;
 
         public readonly List<SelectListItem> TranslationProviders;
 
-        public IndexModel(IDbResourceManager manager, IDbCultureManager cManager, IStringTranslatorFactory translatorFactory, ILogger<IndexModel> log)
+        public IndexModel(IDbResourceManager manager, IDbCultureManager cManager, ITranslatorFactory translatorFactory, ILogger<IndexModel> log)
         {
             _logger = log;
             _resManager = manager;
