@@ -1,0 +1,39 @@
+﻿@page
+@model XLocalizer.DB.UI.Areas.XLocalizer.Pages.Resources.EditModel
+@{
+    ViewBag.Title = "Edit resource";
+}
+
+<div class="container">
+    <h2 localize-content="true">Edit resource</h2>
+    <alert></alert>
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="InputModel.Key"></label>
+            <textarea asp-for="InputModel.Key" class="form-control" rows="5" readonly></textarea>
+            <span asp-validation-for="InputModel.Key" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InputModel.NewKey"></label>
+            <textarea asp-for="InputModel.NewKey" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="InputModel.NewKey" class="text-danger"></span>
+        </div>
+        <input type="hidden" asp-for="ID" />
+        @if (string.IsNullOrWhiteSpace(Model.ReturnUrl))
+        {
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        }
+        else
+        {
+            <a href="@Model.ReturnUrl" class="btn btn-secondary">Cancel</a>
+        }
+        <button type="submit" class="btn btn-primary" localize-att-title="Update" localize-content="true">
+            Update
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

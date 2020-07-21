@@ -1,0 +1,150 @@
+﻿@page
+@model XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures.IndexModel
+@{
+    ViewBag.Title = "Cultures";
+    // set culture name for select2 drop down language
+    // get only first two letters
+    var culture = CultureInfo.CurrentCulture.Name.Split('-')[0];
+    var dir = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
+
+}
+
+@inject Microsoft.Extensions.Localization.IStringLocalizer _localizer; 
+
+<div class="content">
+    <h2 localize-content="true">Cultures</h2>
+    <alert></alert>
+    <table class="table table-striped">
+        <thead class="bg-dark text-light">
+            <tr>
+                <td colspan="3">
+                    <form class="form-inline" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group col-3">
+                            <select class="form-control" name="ID" id="culturesList"></select>
+                        </div>
+                        <button type="submit" asp-page="Index" asp-page-handler="AddNew" class="btn btn-primary" localize-att-title="Add new culture" localize-content="false">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#RestartApp" localize-att-title="Turn off" localize-content="false">
+                        <i class="fas fa-power-off"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th localize-content="true" scope="col" width="70%">Name</th>
+                <th localize-content="true" scope="col" width="10%">Default</th>
+                <th localize-content="true" scope="col" width="10%">Active</th>
+                <th scope="col" width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.TotalRecords == 0)
+            {
+                <tr>
+                    <td colspan="4" localize-content="true">No records!</td>
+                </tr>
+            }
+            else
+            {
+                string css;
+
+                foreach (var c in Model.SupportedCultures)
+                {
+                    css = c.ID.Contains("-") ? $"flag-icon flag-icon-{c.ID.Split('-')[1].ToLower()}" : "";
+                    <tr>
+                        <td><span class="@(css)"></span> @($"{c.EnglishName} ({c.ID})")</td>
+                        <td>@Html.DisplayFor(x => c.IsDefault)</td>
+                        <td>@Html.DisplayFor(x => c.IsActive)</td>
+                        <td>
+                            @await Html.PartialAsync("_options", c)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <paging page-no="Model.P"
+                            page-size="Model.S"
+                            total-records="Model.TotalRecords"
+                            show-first-last="false"
+                            show-total-pages="false"
+                            show-total-records="false"
+                            show-page-size-nav="false"></paging>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<!-- Restart App Modal -->
+<div class="modal fade" id="RestartApp" tabindex="-1" role="dialog" aria-labelledby="RestartAppLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title text-light" id="RestartAppLabel" localize-content="true">Turn off?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 localize-content="true">Are you sure you want to turn off the app?</h4>
+                <p localize-content="true">Turn off only after changing the supported languages.</p>
+                <alert-warning dismissable="false" localize-content="true">To restart the app after turning off visit any page.</alert-warning>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-content="true">Cancel</button>
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" asp-page-handler="RestartApp" class="btn btn-danger"><i class="fas fa-power-off"></i> <localize>Turn Off</localize></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" aria-hidden="true" tabindex="-1">
+    <span id="selectDefaultText" localize-content="true">Add new culture</span>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/@(culture).js"></script>
+    <script>
+        $(function () {
+            var defaultText = document.getElementById("selectDefaultText").innerText;
+            $('#culturesList').select2({
+                placeholder: defaultText,
+                language: "@culture",
+                dir: "@dir",
+                allowClear: true,
+                width: "100%",
+                minimumInputLength: 2,
+                ajax: {
+                    url: '@Url.Page("Index", "SystemCultures")',
+                    dataType: "json",
+                    data: function (params) {
+                        var query = {
+                            search: params.term
+                        }
+
+                        // Query parameters will be ?search=[term]
+                        return query;
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    }
+                }
+            });
+        });
+
+    </script>
+}
