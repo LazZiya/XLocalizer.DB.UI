@@ -6,7 +6,7 @@
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Interface for managing localization with XLocalizer package and ability to use online translation tools.</Description>
-		<Version>1.0.0-prv5</Version>
+		<Version>1.0.0-preview1</Version>
 		<Authors>Ziya Mollamahmut</Authors>
 		<Company>Ziyad.info</Company>
 		<Copyright>Ziyad.info</Copyright>
@@ -33,8 +33,8 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(UseReference)' == 'Nugets'">
-		<PackageReference Include="XLocalizer.DB" Version="1.0.0-prv5" Exclude="Build,Analyzers" />
-		<PackageReference Include="LazZiya.TagHelpers" Version="5.0.0-beta1" Exclude="Build,Analyzers" />		
+		<PackageReference Include="XLocalizer.DB" Version="1.0.0-preview1" Exclude="Build,Analyzers" />
+		<PackageReference Include="LazZiya.TagHelpers" Version="5.0.0-preview1" Exclude="Build,Analyzers" />		
 	</ItemGroup>
 
 	<ItemGroup>
