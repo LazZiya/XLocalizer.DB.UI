@@ -8,4 +8,4 @@ In order to access the package add link to:
 /XLocalizer/Resources
 
 Visit wiki for more details:
-https://github.com/LazZiya/XLocalizer/wiki
+http://docs.ziyad.info/XLocalizer
