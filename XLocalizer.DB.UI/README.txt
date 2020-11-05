@@ -7,5 +7,5 @@ In order to access the package add link to:
 /XLocalizer/Cultures
 /XLocalizer/Resources
 
-Visit wiki for more details:
-http://docs.ziyad.info/XLocalizer
+Repository: https://github.com/LazZiya/XLocalizer.DB.UI
+Docs: https://docs.ziyad.info/en/XLocalizer/v1.0/setup-db.md
