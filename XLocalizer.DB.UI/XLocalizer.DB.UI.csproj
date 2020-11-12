@@ -6,8 +6,6 @@
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Interface for managing localization with XLocalizer package and ability to use online translation tools.</Description>
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<VersionSuffix></VersionSuffix>
 		<Authors>Ziya Mollamahmut</Authors>
 		<Company>Ziyad.info</Company>
 		<Copyright>Ziyad.info</Copyright>
@@ -19,6 +17,10 @@
 		<RepositoryUrl>https://github.com/LazZiya/XLocalizer.DB.UI</RepositoryUrl>
 		<RepositoryType></RepositoryType>
 		<PackageTags>asp.net, core, razor, mvc, localization, globalization, translation,ui</PackageTags>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
 		<PackageReleaseNotes>
 			- release v1.0.0
 		</PackageReleaseNotes>
