@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Interface for managing localization with XLocalizer package and ability to use online translation tools.</Description>
 		<VersionPrefix>1.0.0</VersionPrefix>
-		<VersionSuffix>rc.1</VersionSuffix>
+		<VersionSuffix></VersionSuffix>
 		<Authors>Ziya Mollamahmut</Authors>
 		<Company>Ziyad.info</Company>
 		<Copyright>Ziyad.info</Copyright>
@@ -20,7 +20,7 @@
 		<RepositoryType></RepositoryType>
 		<PackageTags>asp.net, core, razor, mvc, localization, globalization, translation,ui</PackageTags>
 		<PackageReleaseNotes>
-			- Targetframeworks updated
+			- release v1.0.0
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
@@ -36,9 +36,9 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(UseReference)' == 'Nugets'">
-		<PackageReference Include="XLocalizer.DB" Version="1.0.0-rc.1" Exclude="Build,Analyzers" />
-		<PackageReference Include="XLocalizer.TagHelpers" Version="1.0.0-rc.1" Exclude="Build,Analyzers" />
-		<PackageReference Include="LazZiya.TagHelpers" Version="5.0.0-rc.1" Exclude="Build,Analyzers" />
+		<PackageReference Include="XLocalizer.DB" Version="1.0.0" Exclude="Build,Analyzers" />
+		<PackageReference Include="XLocalizer.TagHelpers" Version="1.0.0" Exclude="Build,Analyzers" />
+		<PackageReference Include="LazZiya.TagHelpers" Version="5.0.0" Exclude="Build,Analyzers" />
 	</ItemGroup>
 
 	<ItemGroup>
