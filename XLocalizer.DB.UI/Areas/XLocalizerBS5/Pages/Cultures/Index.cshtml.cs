@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
+namespace XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Cultures
 {
     [ValidateAntiForgeryToken]
     public class IndexModel : PageModel
@@ -75,7 +75,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             if (string.IsNullOrWhiteSpace(ID))
             {
                 TempData.Danger("Culture name can't be empty");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             var culture = new XDbCulture
@@ -94,7 +94,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             else
                 TempData.Danger("Culture not added!");
 
-            return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+            return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(string ID)
@@ -102,20 +102,20 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             if (string.IsNullOrWhiteSpace(ID))
             {
                 TempData.Danger("Culture name can't be empty");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             var entity = await _culManager.GetCultureAsync(ID);
             if (entity == null)
             {
                 TempData.Danger("Culture not found!");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             if (entity.IsDefault)
             {
                 TempData.Warning("Default culture can't be deleted!");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             if (await _culManager.DeleteCultureAsync(entity.ID))
@@ -123,7 +123,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             else
                 TempData.Danger("Unknown error occord!");
 
-            return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+            return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
         }
 
         public async Task<IActionResult> OnPostActivateAsync(string ID)
@@ -131,20 +131,20 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             if (string.IsNullOrWhiteSpace(ID))
             {
                 TempData.Danger("Culture name can't be empty");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             var entity = await _culManager.GetCultureAsync(ID);
             if (entity == null)
             {
                 TempData.Danger("Culture not found!");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             if (entity.IsDefault && entity.IsActive)
             {
                 TempData.Warning("Default culture can't be disabled!");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             entity.IsActive = !entity.IsActive;
@@ -159,7 +159,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             else
                 TempData.Danger("Unknown error occord!");
 
-            return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+            return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
         }
 
         public async Task<IActionResult> OnPostSetDefaultAsync(string ID)
@@ -167,14 +167,14 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             if (string.IsNullOrWhiteSpace(ID))
             {
                 TempData.Danger("Culture name can't be empty");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             var entity = await _culManager.GetCultureAsync(ID);
             if (entity == null)
             {
                 TempData.Danger("Culture not found!");
-                return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+                return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
             }
 
             if (await _culManager.SetAsDefaultAsync(entity.ID))
@@ -182,7 +182,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
             else
                 TempData.Danger("Unknown error occord!");
 
-            return LocalRedirect(Url.Page("Index", new { area = "XLocalizer" }));
+            return LocalRedirect(Url.Page("Index", new { area = "XLocalizerBS5" }));
         }
 
         public async Task<(IEnumerable<XDbCulture> items, int total)> ListSupportedCulturesAsync()

@@ -1,4 +1,4 @@
-﻿namespace XLocalizer.DB.UI.Areas.XLocalizer.Models
+﻿namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
 {
     /// <summary>
     /// Culture input model

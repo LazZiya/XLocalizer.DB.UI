@@ -1,0 +1,50 @@
+﻿@page
+@model XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Resources.CreateModel
+@{
+    ViewBag.Title = "Create new resource";
+}
+
+<div class="container">
+    <h2 localize-content="true">Create new resource</h2>
+    <alert render-mode="Bootstrap5"></alert>
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="InputModel.Key"></label>
+            <textarea asp-for="InputModel.Key" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="InputModel.Key" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="InputModel.CultureID"></label>
+            <select asp-for="InputModel.CultureID" asp-items="Model.Cultures" class="form-control"></select>
+            <span asp-validation-for="InputModel.CultureID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="InputModel.Value"></label>
+            <textarea asp-for="InputModel.Value" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="InputModel.Value" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="InputModel.Comment"></label>
+            <textarea asp-for="InputModel.Comment" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="InputModel.Comment" class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <label asp-for="InputModel.IsActive" class="form-check-label"></label>
+            <input type="checkbox" asp-for="InputModel.IsActive" class="form-check-input" />
+        </div>
+
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary" localize-att-title="Add new resource" localize-content="true">
+            Save
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

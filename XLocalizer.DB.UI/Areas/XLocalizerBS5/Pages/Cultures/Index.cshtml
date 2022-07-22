@@ -1,6 +1,6 @@
 ﻿@page
 @using System.Globalization
-@model XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures.IndexModel
+@model XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Cultures.IndexModel
 @{
     ViewBag.Title = "Cultures";
     // set culture name for select2 drop down language
@@ -10,27 +10,31 @@
 
 }
 
-@inject Microsoft.Extensions.Localization.IStringLocalizer _localizer; 
+@inject Microsoft.Extensions.Localization.IStringLocalizer _localizer;
 
 <div class="content">
     <h2 localize-content="true">Cultures</h2>
-    <alert></alert>
+    <alert render-mode="Bootstrap5"></alert>
     <table class="table table-striped">
         <thead class="bg-dark text-light">
             <tr>
                 <td colspan="3">
                     <form class="form-inline" method="post">
                         @Html.AntiForgeryToken()
-                        <div class="form-group col-3">
-                            <select class="form-control" name="ID" id="culturesList"></select>
+                        <div class="row">
+                            <div class="col-3">
+                                <select class="form-select" name="ID" id="culturesList"></select>
+                            </div>
+                            <div class="col">
+                                <button type="submit" asp-page="Index" asp-page-handler="AddNew" class="btn btn-primary" localize-att-title="Add new culture" localize-content="false">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                        <button type="submit" asp-page="Index" asp-page-handler="AddNew" class="btn btn-primary" localize-att-title="Add new culture" localize-content="false">
-                            <i class="fas fa-plus"></i>
-                        </button>
                     </form>
                 </td>
                 <td>
-                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#RestartApp" localize-att-title="Turn off" localize-content="false">
+                    <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#RestartApp" localize-att-title="Turn off" localize-content="false">
                         <i class="fas fa-power-off"></i>
                     </a>
                 </td>
@@ -89,7 +93,7 @@
         <div class="modal-content">
             <div class="modal-header bg-warning">
                 <h5 class="modal-title text-light" id="RestartAppLabel" localize-content="true">Turn off?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -99,7 +103,7 @@
                 <alert-warning dismissable="false" localize-content="true">To restart the app after turning off visit any page.</alert-warning>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-content="true">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" localize-content="true">Cancel</button>
                 <form method="post">
                     @Html.AntiForgeryToken()
                     <button type="submit" asp-page-handler="RestartApp" class="btn btn-danger"><i class="fas fa-power-off"></i> <localize>Turn Off</localize></button>
@@ -118,7 +122,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/@(culture).js"></script>
     <script>
-        $(function () {
+        $(function() {
             var defaultText = document.getElementById("selectDefaultText").innerText;
             $('#culturesList').select2({
                 placeholder: defaultText,
@@ -130,7 +134,7 @@
                 ajax: {
                     url: '@Url.Page("Index", "SystemCultures")',
                     dataType: "json",
-                    data: function (params) {
+                    data: function(params) {
                         var query = {
                             search: params.term
                         }
@@ -138,7 +142,7 @@
                         // Query parameters will be ?search=[term]
                         return query;
                     },
-                    processResults: function (data) {
+                    processResults: function(data) {
                         return {
                             results: data
                         };

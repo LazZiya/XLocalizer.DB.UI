@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Models
+namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
 {
     public class TranslationItemModel
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using XLocalizer.DB.UI.Areas.XLocalizerCommon.Models;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Resources
+namespace XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Resources
 {
     public class CreateModel : PageModel
     {

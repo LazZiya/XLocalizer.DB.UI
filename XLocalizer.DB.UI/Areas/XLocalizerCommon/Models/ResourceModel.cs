@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Models
+namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
 {
     public class ResourceEditModel
     {
