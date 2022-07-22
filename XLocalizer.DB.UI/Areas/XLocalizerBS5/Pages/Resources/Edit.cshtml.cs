@@ -5,7 +5,7 @@ using LazZiya.TagHelpers.Alerts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Resources
+namespace XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Resources
 {
     public class EditModel : PageModel
     {

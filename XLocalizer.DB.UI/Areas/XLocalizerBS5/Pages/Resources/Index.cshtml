@@ -1,0 +1,92 @@
+﻿@page
+@using System.Globalization
+@model XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Resources.IndexModel
+@{
+    ViewBag.Title = "Resources";
+    var culture = CultureInfo.CurrentCulture.Name.Split('-')[0];
+    var dir = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? "rtl" : "ltr";
+}
+
+<div class="container">
+    <h2 localize-content="true">Localization Resources</h2>
+    <alert render-mode="Bootstrap5"></alert>
+    <form method="get" class="bg-dark text-light p-2">
+        <h4 localize-content="true">Search</h4>
+        <div class="row">
+            <div class="col-1">
+                <input type="text" asp-for="@Model.SearchModel.ID" class="form-control" localize-att-placeholder="ID" />
+            </div>
+            <div class="col-8">
+                <input type="text" asp-for="@Model.SearchModel.Query" class="form-control" localize-att-placeholder="Key" />
+            </div>
+            <div class="col-2">
+                <select asp-for="SearchModel.Culture" asp-items="Model.Cultures" class="form-control"></select>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead class="bg-dark text-light">
+            <tr>
+                <th localize-content="true" scope="col" width="30%">Key</th>
+                <th localize-content="true" scope="col" width="30%">Value</th>
+                <th localize-content="true" scope="col" width="20%">Comment</th>
+                <th localize-content="true" scope="col" width="10%">Culture</th>
+                <th scope="col" width="10%">
+                    <a asp-page="Create" class="btn btn-primary" localize-att-title="Create new resource" localize-content="false">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model.TotalRecords == 0)
+            {
+                <tr>
+                    <td colspan="5" localize-content="true" scope="row">No records!</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var r in Model.Resources)
+                {
+                    var cId = r.CultureID ?? "default";
+
+                    var css = cId.Contains("-") ? $"flag-icon flag-icon-{cId.Split('-')[1].ToLower()}" : "";
+                    <tr>
+                        <td>@(r.Key?.Length > 200  ? r.Key?.Substring(0, 200) : r.Key)</td>
+                        <td>@(r.Value?.Length > 200  ? r.Value?.Substring(0, 200) : r.Value)</td>
+                        <td>@(r.Comment?.Length > 100  ? r.Comment?.Substring(0, 100) : r.Comment)</td>
+                        <td><span class="@(css)"></span> @($"{cId}")</td>
+                        <td>
+                            @await Html.PartialAsync("_options", r)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <paging page-no="Model.P"
+                            page-size="Model.S"
+                            total-records="Model.TotalRecords"
+                            render-mode="Bootstrap5"></paging>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#SearchModel_Culture").prepend('<option></option>').val('@Model.SearchModel.Culture');
+        });
+    </script>
+}

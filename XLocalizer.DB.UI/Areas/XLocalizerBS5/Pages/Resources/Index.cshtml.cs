@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Resources
+namespace XLocalizer.DB.UI.Areas.XLocalizerBS5.Pages.Resources
 {
     public class IndexModel : PageModel
     {

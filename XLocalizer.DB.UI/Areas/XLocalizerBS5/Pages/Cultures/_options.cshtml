@@ -3,12 +3,12 @@
 @{
     string css = Model.ID.Contains("-") ? $"flag-icon flag-icon-{Model.ID.Split('-')[1].ToLower()}" : "";
     string act = Model.IsActive ? "Disable" : "Enable";
-    var dropDownDir = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? "dropright" : "dropleft";
+    var dropDownDir = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? "dropend" : "dropstart";
 }
 
 <!-- Default dropleft button -->
 <div class="btn-group @(dropDownDir)">
-    <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-cog"></i>
     </button>
     <div class="dropdown-menu">
@@ -16,7 +16,7 @@
             <i class="fas fa-language"></i>
             <localize>Resources</localize>
         </a>
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#generateResx-@(Model.ID)">
+        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#generateResx-@(Model.ID)">
             <i class="fas fa-file-export"></i>
             <localize>Export to resource file</localize>
         </a>
@@ -31,24 +31,24 @@
         {
             if (!Model.IsActive)
             {
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#activate-@(Model.ID)">
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#activate-@(Model.ID)">
                     <i class="fas fa-check-square"></i>
                     <localize>Enable</localize>
                 </a>
             }
             else
             {
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#activate-@(Model.ID)">
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#activate-@(Model.ID)">
                     <i class="far fa-square"></i>
                     <localize>Disable</localize>
                 </a>
             }
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#setDefault-@(Model.ID)">
+            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#setDefault-@(Model.ID)">
                 <i class="fas fa-dot-circle"></i>
                 <localize>Set as default</localize>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#delete-@(Model.ID)">
+            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-@(Model.ID)">
                 <i class="fas fa-trash-alt"></i>
                 <localize>Delete</localize>
             </a>
@@ -62,7 +62,7 @@
         <div class="modal-content">
             <div class="modal-header bg-danger text-light">
                 <h5 class="modal-title" id="deleteLabel-@(Model.ID)" localize-content="true">Confirm delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -75,7 +75,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-att-title="Cancel">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" localize-att-title="Cancel">Cancel</button>
                 <form method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="ID" />
@@ -92,7 +92,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="activateLabel-@(Model.ID)" localize-content="true">@act Culture </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -105,7 +105,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-content="true">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" localize-content="true">Cancel</button>
                 <form method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="ID" />
@@ -122,7 +122,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="setDefaultLabel-@(Model.ID)" localize-content="true">Set as default</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -135,7 +135,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-content="true">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" localize-content="true">Cancel</button>
                 <form method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="ID" />
@@ -152,7 +152,7 @@
         <div class="modal-content">
             <div class="modal-header bg-warning">
                 <h5 class="modal-title" id="setDefaultLabel-@(Model.ID)" localize-content="true">Generate Resx File</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" localize-content="true">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" localize-content="true">Cancel</button>
                     @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="ID" />
                     <button type="submit" asp-page-handler="GenerateResxFile" class="btn btn-warning" localize-content="true">Generate Resx File</button>
