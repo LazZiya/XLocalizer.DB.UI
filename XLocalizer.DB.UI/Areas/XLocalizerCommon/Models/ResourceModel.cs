@@ -7,7 +7,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
 {
     public class ResourceEditModel
     {
-        [ExRequired]
+        [Required]
         [Display(Name = "Key")]
         public string Key { get; set; }
         
@@ -44,7 +44,7 @@ namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
         /// <summary>
         /// The resource key
         /// </summary>
-        [ExRequired]
+        [Required]
         [Display(Name ="Text")]
         public string Key { get; set; }
 
@@ -57,14 +57,14 @@ namespace XLocalizer.DB.UI.Areas.XLocalizerCommon.Models
         /// <summary>
         /// Localized Value
         /// </summary>
-        [ExRequired]
+        [Required]
         [Display(Name ="Localized value")]
         public string Value { get; set; }
 
         /// <summary>
         /// Culture Id, two letter ISO name
         /// </summary>
-        [ExRequired]
+        [Required]
         [Display(Name ="Culture name")]
         public string CultureID { get; set; }
 

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
 {
@@ -19,10 +20,10 @@ namespace XLocalizer.DB.UI.Areas.XLocalizer.Pages.Cultures
     {
         private readonly IDbCultureManager _culManager;
         private readonly IDbResourceExporter _exporter;
-        private readonly IApplicationLifetime _applicationLifetime;
+        private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly ILogger _logger;
 
-        public IndexModel(IDbCultureManager manager, IDbResourceExporter exporter, IApplicationLifetime lifetime, ILogger<IndexModel> logger)
+        public IndexModel(IDbCultureManager manager, IDbResourceExporter exporter, IHostApplicationLifetime lifetime, ILogger<IndexModel> logger)
         {
             _culManager = manager;
             _exporter = exporter;
